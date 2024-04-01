@@ -323,6 +323,7 @@ class bolglistAPI(generics.ListAPIView):
 
 
 class blogAPI(viewsets.ModelViewSet):
+    csrf_exempt = True
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = hexo_blog_md.objects.all()
