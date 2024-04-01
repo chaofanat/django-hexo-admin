@@ -12,6 +12,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "experimentalDecorators": true,
     "jsx": "preserve",
 
     /* Linting */
@@ -26,6 +27,8 @@
       "@/*": ["src/*"]
     }, 
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "src/router/index.ts", "declarations.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }],
+
+  "exclude":["node_modules"]	// // ts排除的文件
 }

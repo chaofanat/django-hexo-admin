@@ -1,0 +1,11 @@
+author: John Doe #【用户名】
+url: http://example.com #【127.0.0.1:8081/static/public/username】
+root: /username/ #【根目录】
+# Directory
+source_dir: source/username_id_source  #【用户source】
+public_dir: public/username   #【用户站点】
+tag_dir: tags/username_id_tags         #【usernametages】
+archive_dir: archives/username_id_archives #【username_id_archives】
+category_dir: categories/username_id_categories  #【categories】
+new_post_name: :title.md # 【File name of new posts】
+relative_link: true  #【important】

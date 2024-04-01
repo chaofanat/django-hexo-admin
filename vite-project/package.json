@@ -9,13 +9,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "element-plus": "^2.6.2",
+    "js-yaml": "^4.1.0",
+    "json5": "^2.2.3",
+    "lodash.uniqueid": "^4.0.1",
+    "markdown-it": "^14.1.0",
     "path": "^0.12.7",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
   },
   "devDependencies": {
+    "@types/lodash.uniqueid": "^4.0.9",
+    "@types/markdown-it": "^13.0.7",
     "@types/node": "^20.11.30",
     "@vitejs/plugin-vue": "^5.0.4",
+    "sass": "^1.72.0",
     "typescript": "^5.2.2",
     "unplugin-auto-import": "^0.17.5",
     "unplugin-vue-components": "^0.26.0",
