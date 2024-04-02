@@ -32,7 +32,7 @@ pip install -r requirements.txt
 #运行django服务,8081是默认端口，如果要调整需要更改django项目setting.py的FOR_HEXOCONFIG_URL属性以及nginx的配置文件nginx.config
 python manage.py runserver 127.0.0.1:8081
 ```
-*此项目的测试数据并未清除，django超级用户为admin，密码123456，服务运行后，可以登录http://127.0.0.1:8081/admin访问django自带的后台管理系统，可以很方便的进行数据库的管理*
+*此项目的测试数据并未清除，django超级用户为admin，密码123456，服务运行后，可以登录http://127.0.0.1:8081/admin 访问django自带的后台管理系统，可以很方便的进行数据库的管理*
 
 4. 全局安装hexo-cli
 建议使用npm进行安装
