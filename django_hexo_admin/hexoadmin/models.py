@@ -4,14 +4,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 
-class apitest(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=100, unique=True)
-    description = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
-import json
+
+#存储hexo配置文件(json)
 class hexo_config(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -23,6 +18,7 @@ class hexo_config(models.Model):
     def local_url(self):
         return self.user.username +'_'+ str(self.user.id) +'_'+ "hexoconfig.json"
 
+    #指定关键配置，替换用户设定配置
     @property
     def key_config(self):
         url = settings.FOR_HEXOCONFIG_URL + "/blog/" + self.user.username
@@ -64,7 +60,7 @@ class hexo_config(models.Model):
 # theme: next
 # theme_config:
 
-
+#存储hexo主题，需要管理员登录后台管理系统完成theme数据的登记，程序会自动拉取hexo根目录下的themes文件下的文件列表登记主题名称
 class hexo_theme(models.Model):
     id = models.AutoField(primary_key=True)
     theme_name = models.CharField(max_length=255)
@@ -75,7 +71,7 @@ class hexo_theme(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
+#存储用户hexotheme配置，前端设置保存后，会自动添加到hexo_config中
 class hexo_theme_config(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -86,7 +82,7 @@ class hexo_theme_config(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
+#用户博客数据
 class hexo_blog_md(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

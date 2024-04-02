@@ -8,20 +8,13 @@ from rest_framework import status
 
 # Create your views here.
 
-from .models import apitest
+
 from rest_framework import viewsets
-from .serializers import apitestSerializer
+
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 import json
-
-
-class apitestViewSet(viewsets.ModelViewSet):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = apitest.objects.all()
-    serializer_class = apitestSerializer
 
 
 from django.contrib.auth.models import User

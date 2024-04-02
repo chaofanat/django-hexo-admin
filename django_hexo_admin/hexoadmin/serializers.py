@@ -1,12 +1,8 @@
 from rest_framework import serializers
-from .models import apitest, hexo_config, hexo_theme, hexo_theme_config, hexo_blog_md
+from .models import  hexo_config, hexo_theme, hexo_theme_config, hexo_blog_md
 from django.contrib.auth.models import User
 
 # HyperlinkedModelSerializer建议和viewsets一起使用，可以自动生成url，且不用自定义url，或者指定fields不带url，注意无法使用exclude对url进行排除
-class apitestSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = apitest
-        fields = '__all__'
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
