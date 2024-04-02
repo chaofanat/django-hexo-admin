@@ -14,9 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.views.generic import TemplateView
+
 # 导入include
 from django.conf.urls import include
 from django.views.generic import RedirectView
@@ -30,6 +32,7 @@ from django.http import FileResponse, Http404, HttpResponse, HttpResponseNotModi
 from django.utils.http import http_date, parse_http_date
 from pathlib import Path
 from django.utils._os import safe_join
+from django.views.generic import TemplateView
 
 
 def serve_index(request, path, document_root=None):
@@ -52,7 +55,8 @@ def serve_index(request, path, document_root=None):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("api/", include("hexoadmin.urls")),
     path("hexoadmin/", include("hexoadmin.urls")),
-    path("", RedirectView.as_view(url="hexoadmin/")),
-    path("blog/<path:path>", serve_index, {"document_root": settings.HEXO_ROOT_URL}),
+    path("blog/<path:path>", serve_index, {"document_root": settings.HEXO_SITE_URL}),
+    # path("<path:url>/", TemplateView.as_view(template_name="index.html")),
 ]

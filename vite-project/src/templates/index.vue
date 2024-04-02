@@ -10,7 +10,8 @@
           <div class="card-body w-25">
             <div class="d-grid gap-2">
               <router-link class="btn btn-primary" to='/hexo_config'>Hexo配置</router-link>
-              <router-link class="btn btn-secondary" to='/blog'>开始写博客</router-link>
+              <router-link class="btn btn-secondary" to='/blogadmin'>开始写博客</router-link>
+              <button class="btn btn-primary" @click="logout">退出</button>
             </div>
           </div>
         </div>
@@ -29,7 +30,12 @@ export default {
       username: localStorage.getItem('username'),
     }
   },
-  methods: {},
+  methods: {
+    logout() {
+      localStorage.clear();
+      this.$router.push('/login')
+    }
+  },
   mounted() {
   }
 }

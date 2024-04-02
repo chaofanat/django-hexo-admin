@@ -16,6 +16,7 @@
           {{ theme.theme_name }}
         </option>
       </select>
+      <button @click="updateThemeList()" class="btn btn-primary mt-2">更新主题列表</button>
     </div>
 
     <div class="card mb-3">
@@ -34,13 +35,13 @@
     </div>
     <div class="card mb-3">
       <div class="card-body d-flex flex-column">
-        <div><p class="card-text">你目前使用的主题是：{{ selectedTheme.theme_title }}</p></div>
+        <div><p class="card-text" v-if="selectedTheme.theme_title">你目前使用的主题是：{{ selectedTheme.theme_title }}</p></div>
         <div class="mt-auto d-grid gap-2">
           <router-link class="btn btn-primary w-25" to="/hexo_config"
             >回到Hexo配置</router-link
           >
 
-          <router-link class="btn btn-secondary w-25" to="/blog"
+          <router-link class="btn btn-secondary w-25" to="/blogadmin"
             >开始写博客</router-link
           >
         </div>
@@ -116,7 +117,7 @@ export default {
       themes: [],
       selecttheme_name: "",
       selecttheme: "",
-      selectedTheme: "",
+      selectedTheme: {'theme_title':'你尚未设置主题！'},
       themeconfig: "",
       jsonthemeconfig: "",
     };
@@ -129,7 +130,7 @@ export default {
       .then((res) => {
         //如果data是一个空列表，则返回一个空对象，而不是一个空列表。
         if (res.data == []) {
-          this.updateThemeList();
+          this.themes =[ {'theme_name': "尚未添加主题"}];
         } else {
           this.themes = res.data;
         }
@@ -141,7 +142,7 @@ export default {
       .get("/hexo_theme_config")
       .then((res) => {
         if (res.data == null) {
-          this.selectedTheme = { theme_title: "还未设置主题！" };
+          //this.selectedTheme = { theme_title: "还未设置主题！" };
         } else {
           this.selectedTheme = res.data;
           this.themeconfig = yaml.dump(Json.parse(res.data.config));
@@ -155,6 +156,7 @@ export default {
     jsonstotring(str) {
       str = str.replace(/(\w+)\s*:/g, '"$1":');
       str = str.replace(/"http"/g, 'http').replace(/"https"/g, 'https');
+      str = str.replace(/"mailto":name@email.com/g, 'mailto:name@email.com');
       str = str.replace(/(\d{1,3})\.(\d{1,3})\.(\d{1,3})\."(\d{1,3})"/g, '$1.$2.$3.$4');
       str = str.replace(/"HH":"mm":ss/g, 'HH:mm:ss');
       str = str.replace(/\'/g,'"');
@@ -171,10 +173,12 @@ export default {
     },
     useTheme() {
       this.$axios
-        .get("/hexo_theme_config", {
+        .get("/hexo_theme_config_set", {
           params: { theme_name: this.selecttheme_name },
         })
         .then((res) => {
+          alert("设置成功！");
+          window.location.reload();
           console.log(res.data);
         })
         .catch((err) => {

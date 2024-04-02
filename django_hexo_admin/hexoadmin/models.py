@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import User
-
+from django.conf import settings
 
 class apitest(models.Model):
     id = models.AutoField(primary_key=True)
@@ -11,7 +11,7 @@ class apitest(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-
+import json
 class hexo_config(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -21,13 +21,15 @@ class hexo_config(models.Model):
 
     @property
     def local_url(self):
-        return self.user.username + str(self.id) + "hexoconfig.json"
+        return self.user.username +'_'+ str(self.user.id) +'_'+ "hexoconfig.json"
 
     @property
     def key_config(self):
+        url = settings.FOR_HEXOCONFIG_URL + "/blog/" + self.user.username
+
         return {
             "author": self.user.username,
-            "url": "http://127.0.0.1:8081/blog/" + self.user.username,
+            "url": url,
             "root": "/blog/" + self.user.username + "/",
             "source_dir": "source/"
             + self.user.username
@@ -87,7 +89,7 @@ class hexo_theme_config(models.Model):
 
 class hexo_blog_md(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=255, null=True)
     md_content = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -95,4 +97,4 @@ class hexo_blog_md(models.Model):
 
     @property
     def local_url(self):
-        return "source/" + self.user.username + "_" + str(self.user.id) + "_source"
+        return "source/" + self.user.username + "_" + str(self.user.id) + "_source"+"/_posts/"+self.title+".md"

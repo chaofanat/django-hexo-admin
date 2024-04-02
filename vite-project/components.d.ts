@@ -7,15 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    App: typeof import('./src/components/App.vue')['default']
-    ElButton: typeof import('element-plus/es')['ElButton']
-    ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    ToDoForm: typeof import('./src/components/ToDoForm.vue')['default']
-    ToDoItem: typeof import('./src/components/ToDoItem.vue')['default']
-    ToDoItemEditForm: typeof import('./src/components/ToDoItemEditForm.vue')['default']
-    ToDoList: typeof import('./src/components/ToDoList.vue')['default']
   }
 }

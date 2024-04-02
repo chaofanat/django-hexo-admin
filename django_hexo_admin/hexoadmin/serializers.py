@@ -31,7 +31,7 @@ class hexo_theme_configSerializer(serializers.ModelSerializer):
         model = hexo_theme_config
         fields = '__all__'
 
-class hexo_blog_mdSerializer(serializers.HyperlinkedModelSerializer):
+class hexo_blog_mdSerializer(serializers.ModelSerializer):
     class Meta:
         model = hexo_blog_md
         fields = '__all__'

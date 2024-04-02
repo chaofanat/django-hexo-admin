@@ -25,9 +25,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("@/templates/about.vue"),
   },
   {
-    path: "/blog",
+    path: "/blogadmin",
     name: "blog",
-    component: () => import("@/templates/blog.vue"),
+    component: () => import("@/templates/blogadmin.vue"),
   },
   {
     path: "/hexo_config",

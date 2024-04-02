@@ -22,12 +22,10 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">
-                      <span class="d-flex align-items-center">
-                        <span class="bi bi-gear-fill me-1"></span>
-                        <router-link to="/hexo_theme">主题配置</router-link>
-                      </span>
-                    </a>
+                      <router-link class="nav-link" to="/hexo_theme">主题配置</router-link>
+                  </li>
+                  <li class="nav-item">
+                    <router-link class="nav-link" to="/">回到主页</router-link>
                   </li>
                 </ul>
               </nav>
@@ -112,6 +110,7 @@ export default {
     this.$axios
       .get("/hexo_config")
       .then((response) => {
+        console.log(response.data.config);
         this.config = yaml.dump(Json.parse(response.data.config));
       })
       .catch((error) => {
@@ -150,6 +149,7 @@ export default {
     jsonstotring(str) {
       str = str.replace(/(\w+)\s*:/g, '"$1":');
       str = str.replace(/"http"/g, 'http').replace(/"https"/g, 'https');
+      str = str.replace(/"mailto":name@email.com/g, 'mailto:name@email.com');
       str = str.replace(/(\d{1,3})\.(\d{1,3})\.(\d{1,3})\."(\d{1,3})"/g, '$1.$2.$3.$4');
       str = str.replace(/"HH":"mm":ss/g, 'HH:mm:ss');
       str = str.replace(/\'/g,'"');

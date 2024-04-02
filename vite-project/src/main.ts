@@ -11,14 +11,14 @@ import "@popperjs/core";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import axios from 'axios'
 
-// 监听浏览器窗口关闭事件
+
 // window.addEventListener('beforeunload', function() {
 //   // 清除localStorage
 //   localStorage.clear();
 // });
 const app = createApp(App);
 //axios发送http请求的目标地址的基础路径
-axios.defaults.baseURL = "/api"
+axios.defaults.baseURL = "/api";
 app.config.globalProperties.$axios = axios
 app.use(ElementPlus, { locale: zhCn }).use(router).mount('#app')
 
