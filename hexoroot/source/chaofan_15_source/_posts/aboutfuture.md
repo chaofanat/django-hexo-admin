@@ -3,7 +3,6 @@ title: hexo+icarus博客搭建
 date: 2023-11-29 18:39:50
 categories: tech
 tags: hexo
-id: 1
 toc: true
 ---
 # 简介

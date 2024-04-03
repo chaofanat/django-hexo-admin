@@ -154,5 +154,5 @@ CORS_ALLOW_HEADERS = "*"
 HEXO_ROOT_URL = os.path.join(BASE_DIR.parent, "hexoroot")
 # hexo生成的静态文件的转存地址，也是前端访问的地址
 HEXO_SITE_URL = os.path.join(BASE_DIR.parent, "nginx-1.24.0", "html", "blogsite")
-# django服务地址
-FOR_HEXOCONFIG_URL = r"http://127.0.0.1:8081"
+# django服务器地址，部署后应设置为域名
+FOR_HEXOCONFIG_URL = r"http://127.0.0.1"
